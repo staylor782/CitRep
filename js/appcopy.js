@@ -3,25 +3,30 @@ var app = angular.module('CitRep', ['ui.router', 'firebase', 'ngMaterial']);
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue-grey', {
-      'default': '400', // by default use shade 400 from the palette for primary intentions
-      'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
-      'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
-      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
-    });
+            'default': '400', // by default use shade 400 from the palette for primary intentions
+            'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
+            'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
+            'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+        })
+        .accentPalette('light-blue');
 });
 
 app.constant('fb', {
     //Firebase URL goes here
 });
 
-var width = 960,
-    height = 500,
+var width = 1000,
+    height = 650,
     active = d3.select(null);
 
-var projection = d3.geo.orthographic()
-    .scale(250)
-    .translate([width / 2, height / 2])
-    .clipAngle(90);
+//var projection = d3.geo.orthographic()
+//    .scale(250)
+//    .translate([width / 2, height / 2])
+//    .clipAngle(90);
+
+var projection = d3.geo.mercator()
+    .scale(175)
+    .translate([width / 2, height / 2]);
 
 var zoom = d3.behavior.zoom()
     .translate([0, 0])
@@ -32,7 +37,7 @@ var zoom = d3.behavior.zoom()
 var path = d3.geo.path()
     .projection(projection);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height)
     .on("click", stopped, true);
@@ -46,7 +51,7 @@ svg.append("rect")
 var g = svg.append("g");
 
 svg
-    .call(zoom) // delete this line to disable free zooming
+    .call(zoom) // delete this line to disable free zooming as well as click and drag
     .call(zoom.event);
 
 d3.json("data/worldCountries110.json", function(collection) {
@@ -111,3 +116,5 @@ function zoomed() {
 function stopped() {
   if (d3.event.defaultPrevented) d3.event.stopPropagation();
 }
+
+//jbodilytm@gmail.com

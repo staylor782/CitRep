@@ -1,0 +1,69 @@
+.background {
+    fill: #B0BEC5;
+    pointer-events: all;
+}
+
+/*
+.feature {
+    fill: #ccc;
+    cursor: pointer;
+}
+
+.feature.active {
+  fill: orange;
+}
+*/
+
+.mesh {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/*
+.subunit-boundary {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+*/
+
+/*
+svg {
+    pointer-events: all;
+}
+*/
+
+.country {
+    stroke: black;
+    stroke-width: .75px;
+}
+
+.country:hover {
+    stroke: blue;
+    stroke-width: .75px;
+}
+
+.active {
+    fill: #01579B;
+}
+
+/*
+.countries {
+    stroke: white;
+    stroke-width: .75px;
+    fill: orange;
+}
+
+.countries:hover {
+    stroke: blue;
+    stroke-width: 1.5px;
+}
+*/
+
+/*
+g {
+    background-color: white;
+}*/
