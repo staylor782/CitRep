@@ -2,13 +2,13 @@ var app = angular.module('CitRep', ['ui.router', 'firebase', 'ngMaterial']);
 
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-        .primaryPalette('blue', {
-            'default': '900', // by default use shade 400 from the palette for primary intentions
+        .primaryPalette('blue-grey', {
+            'default': '500', // by default use shade 400 from the palette for primary intentions
             'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
             'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
             'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
         })
-        .accentPalette('blue-grey');
+        .accentPalette('light-blue');
 });
 
 app.constant('fb', {
@@ -49,13 +49,21 @@ function ready(error, worldData) {
         countries = worldData.features;
 
     //Adding countries to select
+    
+//    countries.forEach(function(d) {
+//        countryById.push(d.properties.geounit);
+//        console.log(countryById);
+//    })
+    //console.log(countries);
 
     countries.forEach(function(d) {
       countryById[d.id] = d.properties.geounit;
       option = countryList.append("option");
-      option.text(d.name);
+      option.text(d.properties.geounit);
       option.property("value", d.id);
     });
+    
+    //console.log(countryById);
 
     
     var ocean =     svg.append("path")

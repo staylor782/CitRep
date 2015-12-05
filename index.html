@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
 </head>
 
+<!--<body ng-controller="mainCtrl">-->
 <body>
 <!--    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>-->
     <script src="/bower_components/angular/angular.js"></script>
@@ -17,13 +18,16 @@
             <md-toolbar>
                 <div class="md-toolbar-tools md-hue-3">
                     <h1>
-                        <span>CitRep: News for the geospatially minded</span>
+                        <span>CitRep: News for the geospatially-minded</span>
                     </h1>
                     <span flex></span>
-                    <md-button class="md-raised md-primary md-hue-1">
+                    <md-button class="md-raised md-primary md-hue-1" ng-show="loggedIn = false">
                         Login
                     </md-button>
-                    <md-button class="md-raised md-primary md-hue-2">
+                    <md-button class="md-raised md-primary md-hue-1" ng-show="loggedIn = true">
+                        Logout
+                    </md-button>
+                    <md-button class="md-raised md-primary md-hue-2" ng-show="loggedIn = false">
                         Register
                     </md-button>
                 </div>
@@ -33,10 +37,22 @@
     <div ui-view="maps"></div>
     <div ui-view="sideMenu"></div>
 -->
+    <div id="main">
+        <div class="map-main">
+            <div class="map-menu">
+                <button id="changeMap" class="md-raised md-primary md-hue-1">Maps</button>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div class="side-menu">
+            <div id="search"></div>
+            <div id="feed"></div>
+        </div>
+    </div>
+<!--
     <div class="map-main">
         <div class="map-menu">
-            <button id="changeMap" class="md-raised md-primary md-hue-1">
-            </button>
+            <button id="changeMap" class="md-raised md-primary md-hue-1">Maps</button>
         </div>
         <div id="map"></div>
     </div>
@@ -44,6 +60,7 @@
         <div id="search"></div>
         <div id="feed"></div>
     </div>
+-->
     
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>

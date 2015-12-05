@@ -1,7 +1,9 @@
+/*
 .background {
     fill: #B0BEC5;
     pointer-events: all;
 }
+*/
 
 /*
 .feature {
@@ -14,12 +16,14 @@
 }
 */
 
+/*
 .mesh {
   fill: none;
   stroke: #fff;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+*/
 
 /*
 .subunit-boundary {
@@ -36,6 +40,7 @@ svg {
 }
 */
 
+/*
 .country {
     stroke: black;
     stroke-width: .75px;
@@ -64,11 +69,12 @@ div.tooltip {
   opacity: 0.9; 
   position: absolute;
 }
+*/
 
 /*appcopy3.js CSS*/
 .water {
-  fill: #00248F;
-/*    fill: lightblue;*/
+/*  fill: #00248F;*/
+    fill: #0D47A1;
 }
 
 .countryTooltip {
@@ -85,14 +91,14 @@ div.tooltip {
 }
 
 .land {
+/*
   fill: #A98B6F;
   stroke: #FFF;
   stroke-width: 0.7px;
-/*
-    fill: gray;
+*/
+    fill: #BDBDBD;
     stroke: black;
     stroke-width: .75px;
-*/
 }
 
 .land:hover {
