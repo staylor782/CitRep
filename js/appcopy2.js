@@ -2,13 +2,13 @@ var app = angular.module('CitRep', ['ui.router', 'firebase', 'ngMaterial']);
 
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-        .primaryPalette('blue-grey', {
-            'default': '500', // by default use shade 400 from the palette for primary intentions
+        .primaryPalette('blue', {
+            'default': '900', // by default use shade 400 from the palette for primary intentions
             'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
             'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
             'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
         })
-        .accentPalette('light-blue');
+        .accentPalette('blue-grey');
 });
 
 app.constant('fb', {
@@ -29,6 +29,8 @@ var projection = d3.geo.orthographic()
 var path = d3.geo.path().projection(projection);
 
 var svg = d3.select("#map").append("svg").attr({width: width, height: height});
+
+var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
 
 svg.append("rect")
     .attr("class", "background")

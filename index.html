@@ -17,7 +17,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools md-hue-3">
                     <h1>
-                        <span>CitRep: News for the geographically minded</span>
+                        <span>CitRep: News for the geospatially minded</span>
                     </h1>
                     <span flex></span>
                     <md-button class="md-raised md-primary md-hue-1">
@@ -29,16 +29,16 @@
                 </div>
             </md-toolbar>
     </div>
+<!--
+    <div ui-view="maps"></div>
+    <div ui-view="sideMenu"></div>
+-->
     <div class="map-main">
-        
         <div class="map-menu">
             <button id="changeMap" class="md-raised md-primary md-hue-1">
             </button>
         </div>
         <div id="map"></div>
-        
-    
-        <div ui-view></div>
     </div>
     <div class="side-menu">
         <div id="search"></div>
@@ -55,9 +55,15 @@
 <!--    <script src="js/Libraries/d3.geo.projection.js"></script>-->
 <!--    <script src="js/Libraries/geo.js"></script>-->
 <!--    <script src="js/Libraries/topojson.js"></script>-->
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="js/Libraries/d3.js"></script>
-<!--    <script src="js/app.js"></script>-->
+<!--
+    <script src="js/app.js"></script>
+    <script src="js/Maps/mapsCtrl.js"></script>
+    <script src="js/SideMenu/sideMenuCtrl.js"></script>
+-->
 <!--    <script src="js/appcopy.js"></script>-->
-    <script src="js/appcopy2.js"></script>
+<!--    <script src="js/appcopy2.js"></script>-->
+    <script src="js/appcopy3.js"></script>
 </body>
 </html>

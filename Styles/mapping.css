@@ -50,20 +50,66 @@ svg {
     fill: #01579B;
 }
 
+.hidden { 
+  display: none; 
+}
+
+div.tooltip {
+  color: #222; 
+  background: #fff; 
+  padding: .5em; 
+  text-shadow: #f5f5f5 0 1px 0;
+  border-radius: 2px; 
+  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+  opacity: 0.9; 
+  position: absolute;
+}
+
+/*appcopy3.js CSS*/
+.water {
+  fill: #00248F;
+/*    fill: lightblue;*/
+}
+
+.countryTooltip {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  background: #fff;
+  padding: 5px;
+  text-align: left;
+  border: solid #ccc 1px;
+  color: #666;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.land {
+  fill: #A98B6F;
+  stroke: #FFF;
+  stroke-width: 0.7px;
 /*
-.countries {
-    stroke: white;
+    fill: gray;
+    stroke: black;
     stroke-width: .75px;
-    fill: orange;
+*/
 }
 
-.countries:hover {
-    stroke: blue;
-    stroke-width: 1.5px;
-}
+.land:hover {
+  fill:#33CC33;
+  stroke-width: 1px;
+/*
+    fill: blue;
+    stroke-width: 1px;
 */
+}
+
+.focused {
+  fill: #33CC33;
+/*    fill: #01579B;*/
+}
 
 /*
-g {
+svg {
     background-color: white;
 }*/

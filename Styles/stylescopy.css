@@ -8,28 +8,24 @@
     z-index: 3;
 }
 
-.map-menu {
-    height: 100%;
-    width: 50px;
-/*
-    position: relative;
-    display: inline-block;
-*/
-/*    display: flex;*/
-    background-color: #263238 !important;
-}
-
 .map-main {
     height: 100%;
     width: 100%;
     display: flex;
     background-color: #CFD8DC;
+/*    background-color: black;*/
+}
+
+.map-menu {
+    height: 100%;
+    width: 80px;
+    background-color: #03A9F4;
 }
 
 #changeMap {
-    width: 35px;
-    height: 35px;
-    margin: 5px;
+    width: 60px;
+    height: 40px;
+    margin: 10px;
     position: absolute;
     top: 80px;
 /*    border-radius: 20px;*/
