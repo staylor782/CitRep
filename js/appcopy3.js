@@ -18,6 +18,7 @@ app.constant('fb', {
 var width = 975,
     height = 799,
     sens = 0.25,
+//    centered,
     focused;
 
 var projection = d3.geo.orthographic()
@@ -37,36 +38,85 @@ svg.append("path")
     .attr("d", path);
 
 var countryTooltip = d3.select("#map").append("div").attr("class", "countryTooltip"),
-  countryList = d3.select("#map").append("select").attr("name", "countries");
+    //appending the country selection box to the search section instead of the map section:
+    countryList = d3.select("#search").append("select").attr("name", "countries");
 
-queue().defer(d3.json, "data/worldCountries.json").await(ready);
+queue().defer(d3.json, "data/worldCountriesEdited.json").await(ready);
+
+//var zoom = d3.behavior.zoom()
+//    .scaleExtent([1, 9])
+//    .on("zoom", zoomed);
+//
+//function clicked(d) {
+//    var x, y, k;
+//    
+//    if (d && centered !== d) {
+//        var centroid = path.centroid(d);
+//        x = centroid[0];
+//        y = centroid[1];
+//        k = 4;
+//        centered = d;
+//  } else {
+//      x = width / 2;
+//      y = height / 2;
+//      k = 1;
+//      centered = null;
+//  }
+//
+//  svg.selectAll("path.land")
+//      .classed("active", centered && function(d) { return d === centered; });
+//
+//  svg.transition()
+//      .duration(750)
+//      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+//      .style("stroke-width", 1.5 / k + "px");
+//};
+//
+//function zoomed() {
+//    svg.style("stroke-width", 1.5 / d3.event.scale + "px");
+//    svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+//}
 
 function ready(error, worldData) {
     
+    //"use strict";
     //console.log(worldData.features[0].properties.geounit);
     
-    var countryById = {},
+    var countryById = [],
         countries = worldData.features;
+    
+//    var countryById = {},
+//        countries = worldData.features;
 
     //Adding countries to select
+//    for (var i = 0; i < countries.length; i++) {
+//        countryById[i].name = countries[i].properties.geounit;
+//        option = countryList.append("option");
+//        option.text(countryById[i].name);
+//        option.property("value", countryById[i].name);
+//    }
     
-//    countries.forEach(function(d) {
-//        countryById.push(d.properties.geounit);
-//        console.log(countryById);
-//    })
     //console.log(countries);
-
+    
     countries.forEach(function(d) {
-      countryById[d.id] = d.properties.geounit;
-      option = countryList.append("option");
-      option.text(d.properties.geounit);
-      option.property("value", d.id);
-    });
+        countryById.push(d.properties.geounit);
+        option = countryList.append("option");
+        option.text(d.properties.geounit);
+        option.property("value", d.name);
+    })
+
+//    countries.forEach(function(d) {
+//        console.log(d);
+//      countryById[d.name] = d.properties.geounit;
+//      option = countryList.append("option");
+//      option.text(d.properties.geounit);
+//      option.property("value", d.name);
+//    });
     
     //console.log(countryById);
 
     
-    var ocean =     svg.append("path")
+    var ocean = svg.append("path")
         .datum({type: "Sphere"})
         .attr("class", "water")
         .attr("d", path)
@@ -85,6 +135,7 @@ function ready(error, worldData) {
     .enter().append("path")
     .attr("class", "land")
     .attr("d", path)
+//    .on("click", clicked)
 
     //Drag event
 
@@ -98,10 +149,21 @@ function ready(error, worldData) {
         })
     )
     
+    //Zoom event
+//    .call(d3.behavior.zoom()
+//        .translate([0, 0])
+//        .scale(1)
+//        .scaleExtent([1, 8])
+//        .on("zoom", function() {
+//            svg.style("stroke-width", 1.5 / d3.event.scale + "px");
+//            svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+//        })
+//    )
+    
     //Mouse events
 
     .on("mouseover", function(d) {
-      countryTooltip.text(countryById[d.id])
+      countryTooltip.text(d.properties.geounit)
       .style("left", (d3.event.pageX + 7) + "px")
       .style("top", (d3.event.pageY - 15) + "px")
       .style("display", "block")
@@ -145,5 +207,5 @@ function ready(error, worldData) {
       for(var i = 0, l = cnt.length; i < l; i++) {
         if(cnt[i].id == sel.value) {return cnt[i];}
       }
-    };    
+    };
 };
