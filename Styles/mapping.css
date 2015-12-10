@@ -103,7 +103,7 @@ div.tooltip {
 
 .land:hover {
   fill: #81D4FA;
-  stroke-width: 1px;
+  stroke-width: 2px;
 /*
     fill: blue;
     stroke-width: 1px;

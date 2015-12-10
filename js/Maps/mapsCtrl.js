@@ -6,6 +6,7 @@ app.controller('mapsCtrl', function($scope) {
 var width = 975,
     height = 799,
     sens = 0.25,
+    centered,
     focused;
 
 var projection = d3.geo.orthographic()
@@ -18,11 +19,6 @@ var projection = d3.geo.orthographic()
 var path = d3.geo.path().projection(projection);
 
 var svg = d3.select("#map").append("svg").attr({width: width, height: height});
-
-svg.append("path")
-    .datum({type: "Sphere"})
-    .attr("class", "water")
-    .attr("d", path);
 
 var countryTooltip = d3.select("#map").append("div").attr("class", "countryTooltip"),
     //appending the country selection box to the search section instead of the map section:
@@ -61,6 +57,7 @@ function ready(error, worldData) {
     .enter().append("path")
     .attr("class", "land")
     .attr("d", path)
+    .on("click", clicked)
 
     //Drag event
 
@@ -95,32 +92,60 @@ function ready(error, worldData) {
     //Country focus on option select
 
     d3.select("select").on("change", function() {
-      var rotate = projection.rotate(),
-      focusedCountry = country(countries, this),
-      p = d3.geo.centroid(focusedCountry);
+        var rotate = projection.rotate(),
+        focusedCountry = country(countries, this),
+        p = d3.geo.centroid(focusedCountry);
 
-      svg.selectAll(".focused").classed("focused", focused = false);
+        svg.selectAll(".focused").classed("focused", focused = false);
         
     //Globe rotating
 
-    (function transition() {
-      d3.transition()
-      .duration(2500)
-      .tween("rotate", function() {
-        var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
-        return function(t) {
-          projection.rotate(r(t));
-          svg.selectAll("path").attr("d", path)
-          .classed("focused", function(d, i) { return d.id == focusedCountry.id ? focused = d : false; });
-        };
-      })
-      })();
+        (function transition() {
+            d3.transition()
+            .duration(2500)
+            .tween("rotate", function() {
+                var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+                return function(t) {
+                    projection.rotate(r(t));
+                    svg.selectAll("path.land").attr("d", path)
+                    .classed("focused", function(d, i) { 
+                        return d.properties.geounit == focusedCountry.properties.geounit ? focused = d : false; });
+                };
+            })
+        })();
     });
 
-    function country(cnt, sel) { 
-      for(var i = 0, l = cnt.length; i < l; i++) {
-        if(cnt[i].id == sel.value) {return cnt[i];}
-      }
-    };    
+    function country(arr, sel) {
+        for(var i = 0, l = arr.length; i < l; i++) {
+            if(arr[i].properties.geounit == sel.value) { return arr[i];}
+        }
+    };
+    
+    function clicked(d) {
+        var x, y, k;
+
+        if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = centroid[0];
+            y = centroid[1];
+            k = 4;
+            centered = d;
+        } else {
+            x = width / 2;
+            y = height / 2;
+            k = 1;
+            centered = null;
+        }
+
+        world.selectAll("path")
+            .classed("active", centered && function(d) { return d === centered; });
+
+        world.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")");
+        
+        ocean.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")");
+    };
 };
-});
