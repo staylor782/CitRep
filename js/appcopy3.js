@@ -16,24 +16,24 @@ app.constant('fb', {
 });
 
 //Side Menu code: put in it's own file
-app.controller('mapMenuCtrl', function($scope, $mdSidenav) {
-    
-    $scope.toggleLeft = buildToggler('left');
-    $scope.isOpenLeft = function() {
-        return $mdSidenav('left').isOpen();
-    };    
-    
-    function buildToggler(navID) {
-        return function() {
-            $mdSidenav(navID)
-            .toggle();
-        }
-    };
-    
-    $scope.close = function () {
-        $mdSidenav('right').close();
-    };
-});
+//app.controller('mapMenuCtrl', function($scope, $mdSidenav) {
+//    
+//    $scope.toggleLeft = buildToggler('left');
+//    $scope.isOpenLeft = function() {
+//        return $mdSidenav('left').isOpen();
+//    };    
+//    
+//    function buildToggler(navID) {
+//        return function() {
+//            $mdSidenav(navID)
+//            .toggle();
+//        }
+//    };
+//    
+//    $scope.close = function () {
+//        $mdSidenav('right').close();
+//    };
+//});
 
 var width = 975,
     height = 799,

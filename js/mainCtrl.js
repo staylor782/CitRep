@@ -3,6 +3,8 @@ var app = angular.module('CitRep');
 app.controller('mainCtrl', function($scope, $firebaseAuth, fb) {
     $scope.loggedIn = false;
     
+    $scope.isAdmin = false;
+    
     var ref = new Firebase(fb.url);
     
     $scope.authObj = $firebaseAuth(ref);

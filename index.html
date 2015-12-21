@@ -6,9 +6,10 @@
     <title>CitRep</title>
 <!--    <link rel="stylesheet" href="Styles/styles.css">-->
 <!--    <link rel="stylesheet" href="Styles/stylescopy.css">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="Styles/stylescopy2.css">
     <link rel="stylesheet" href="Styles/mapping.css">
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+<!--    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
@@ -16,10 +17,38 @@
 <body>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
 
+<!--
     <header>
-        <h1 id="title">Citrep</h1>
+        <h1>CitRep</h1>
+        <h3>News for the geospatially-minded</h3>
     </header>
+-->
     
+    <div class="mainHeader">
+        <header>
+            <h1>CitRep</h1>
+            <h3>News for the geospatially-minded</h3>
+        </header>
+        <form id="login" ng-cloak>
+            <ul class="access">
+                <li ng-show="!loggedIn">
+                    <ul>
+                        <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+                        <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
+                    </ul>
+                </li>
+                <li>
+                    <button ng-show="!loggedIn">Login</button>
+                </li>
+                <li>
+                    <button ng-show="!loggedIn">Register</button>
+                </li>
+                <li>
+                    <button ng-show="loggedIn">Logout</button>
+                </li>
+            </ul>
+        </form>
+    </div>
     <!--    <script src="/bower_components/angular/angular.js"></script>-->
 <!--
     <div class="header" ng-cloak>
@@ -108,8 +137,13 @@
 -->
     <div id="main">
         <div class="map-main">
-            <div ng-controller="mapMenuCtrl" layout="column" class="map-menu" ng-cloak>
+            <div class="map-menu" ng-cloak>
+                
+<!--
+            <div layout="column" class="map-menu" ng-cloak>
                 <button id="changeMap" class="md-raised md-primary md-hue-1" ng-click="toggleLeft()" ng-hide="isOpenLeft()">Maps</button>
+-->
+<!--
                 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
                     <md-toolbar class="md-theme-light">
                         <h1 class="md-toolbar-tools">Sidenav Right</h1>
@@ -135,6 +169,7 @@
                         </md-content>
                     </md-toolbar>
                 </md-sidenav>
+-->
             </div>
             <div id="map"></div>
         </div>
@@ -144,6 +179,9 @@
                 <script type="text/javascript" src="http://output18.rssinclude.com/output?type=js&amp;id=1044674&amp;hash=8eccf06beef5e013845267dbcee06d1c"></script>
             </div>
         </div>
+    </div>
+    <div class="countryInfo">
+        
     </div>
 <!--
     <div class="map-main">
@@ -158,9 +196,11 @@
     </div>
 -->
     
+<!--
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-material/angular-material.js"></script>
+-->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js'></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>

@@ -78,16 +78,16 @@ div.tooltip {
 }
 
 .countryTooltip {
-  position: absolute;
-  display: none;
-  pointer-events: none;
-  background: #fff;
-  padding: 5px;
-  text-align: left;
-  border: solid #ccc 1px;
-  color: #666;
-  font-size: 14px;
-  font-family: sans-serif;
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    background: #fff;
+    padding: 5px;
+    text-align: left;
+    border: solid #ccc 1px;
+    color: #666;
+    font-size: 14px;
+    font-family: sans-serif;
 }
 
 .land {
@@ -102,8 +102,9 @@ div.tooltip {
 }
 
 .land:hover {
-  fill: #81D4FA;
-  stroke-width: 2px;
+    fill: #81D4FA;
+    stroke: blue;
+    stroke-width: 1px;
 /*
     fill: blue;
     stroke-width: 1px;
